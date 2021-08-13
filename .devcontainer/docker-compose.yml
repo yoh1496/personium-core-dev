@@ -1,0 +1,65 @@
+version: "3.7"
+
+services:
+  elasticsearch:
+    image: elasticsearch:6.8.12
+    ports:
+      - 9200
+      - 9300
+    environment:
+      - "discovery.type=single-node"
+      - "cluster.name=personium"
+      - "network.host=0.0.0.0"
+      - "action.auto_create_index=.watches,.triggered_watches,.watcher-history-*"
+      - "http.cors.enabled=true"
+      - "http.cors.allow-origin=*"
+      - "indices.fielddata.cache.size=80%"
+
+  activemq:
+    image: rmohr/activemq:5.15.9
+    ports:
+      - 61616
+      - 8161
+
+  memcached-lock:
+    image: memcached:1.6.7
+    ports:
+      - 11211
+
+  memcached-cache:
+    image: memcached:1.6.7
+    ports:
+      - 11211
+
+  personium-engine:
+    build:
+      context: ./dockerfiles/personium-engine
+      args:
+        ENGINE_VER: 1.5.28
+    image: personium-engine:1.5.28
+    ports:
+      - 8080
+    volumes:
+      - personium_data:/personium_nfs
+      - type: bind
+        source: ./dockerfiles/personium-core/personium-core-unit-config.properties
+        target: /personium/personium-core/personium-core-unit-config.properties
+
+  personium-core-dev:
+    build:
+      context: ./dockerfiles/personium-core-dev
+    volumes:
+      - personium_data:/personium_nfs
+
+  # nginx:
+  #   build:
+  #     context: ./dockerfiles/nginx
+  #   ports:
+  #     - 80:80
+
+networks:
+  default:
+
+volumes:
+  personium_data:
+    driver: local

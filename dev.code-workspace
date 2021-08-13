@@ -1,0 +1,21 @@
+{
+    "folders": [
+        {
+            "name": "presonium-core",
+            "path": "/workspace/personium-core"
+        },
+        {
+            "name": "personium-plugins",
+            "path": "/workspace/personium-plugins"
+        },
+        {
+            "name": "personium-plugin-base",
+            "path": "/workspace/personium-plugin-base"
+        }
+    ],
+    "settings": {
+        "terminal.integrated.experimentalLinkProvider": false,
+        "terminal.integrated.gpuAcceleration": "auto",
+        "java.configuration.updateBuildConfiguration": "interactive",
+    }
+}
