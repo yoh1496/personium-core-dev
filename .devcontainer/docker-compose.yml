@@ -37,13 +37,15 @@ services:
       args:
         ENGINE_VER: 1.5.28
     image: personium-engine:1.5.28
+    environment: 
+      JAVA_OPTS: "-Dio.personium.configurationFile=/personium/personium-engine/personium-unit-config.properties"
     ports:
       - 8080
     volumes:
       - personium_data:/personium_nfs
       - type: bind
-        source: ./dockerfiles/personium-core/personium-core-unit-config.properties
-        target: /personium/personium-core/personium-core-unit-config.properties
+        source: ./dockerfiles/personium-engine/personium-unit-config.properties
+        target: /personium/personium-engine/personium-unit-config.properties
 
   personium-core-dev:
     build:

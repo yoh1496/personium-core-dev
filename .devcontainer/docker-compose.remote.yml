@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+  personium-core-dev:
+    volumes:
+      # Mounts the project folder to '/workspace'. While this file is in .devcontainer,
+      # mounts are relative to the first file in the list, which is a level up.
+      - workspace:/workspace
+      # Extensions folder
+      # - ../engine_extensions:/personium/personium-engine/extensions:ro
+      # m2 cache
+      - m2_cache:/m2
+      # bashhistory
+      - bashhistory:/commandhistory
+      # vscode extension
+      - vscode-server-extensions:/home/devuser/.vscode-server/extensions
+      - vscode-server-insiders-extensions:/home/devuser/.vscode-server/extensions
+    # Overrides default command so things don't shut down after the process ends.
+    # command: /bin/sh -c "while sleep 1000; do :; done"
+    # For testing, remapping port
+    command: >-
+      bash -c '
+      socat TCP-LISTEN:61616,reuseaddr,fork TCP:activemq:61616
+      | socat TCP-LISTEN:9300,reuseaddr,fork TCP:elasticsearch:9300
+      | socat TCP-LISTEN:9200,reuseaddr,fork TCP:elasticsearch:9200
+      | socat TCP-LISTEN:11211,reuseaddr,fork TCP:memcached-lock:11211
+      | socat TCP-LISTEN:11212,reuseaddr,fork TCP:memcached-cache:11211
+      | socat TCP-LISTEN:18888,reuseaddr,fork TCP:personium-engine:8080
+      '
+
+volumes:
+  m2_cache:
+    driver: local
+  bashhistory:
+  vscode-server-extensions:
+  vscode-server-insiders-extensions:
+  workspace:

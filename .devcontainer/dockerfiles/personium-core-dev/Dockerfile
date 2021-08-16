@@ -30,6 +30,10 @@ RUN cd /etc/maven \
     && mkdir /m2 \
     && chown -R $USERNAME /m2
 
+# Create workspace directory
+RUN mkdir /workspace \
+    && chown -R $USERNAME /workspace
+
 RUN mkdir /personium_nfs \
     && chown -R $USERNAME /personium_nfs
 

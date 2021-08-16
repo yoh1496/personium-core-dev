@@ -2,10 +2,10 @@
     "name": "Personium Core Development Container",
     "dockerComposeFile": [
         "docker-compose.yml",
-        "docker-compose.devcontainer.yml"
+        "docker-compose.remote.yml"
     ],
     "service": "personium-core-dev",
-    "workspaceFolder": "/workspace/dev.code-workspace",
+    "workspaceFolder": "/workspace",
     "shutdownAction": "stopCompose",
     "extensions": [
         "vscjava.vscode-java-pack",
@@ -32,6 +32,7 @@
         "java.checkstyle.configuration": "personium-checkstyle.xml",
         "java.format.settings.url": "/workspace/personium-core/formatter.xml",
         "java.format.settings.profile": "personium",
-        "java.checkstyle.version": "8.24"
+        "java.checkstyle.version": "8.24",
+        "terminal.integrated.experimentalLinkProvider": false,
     },
 }
