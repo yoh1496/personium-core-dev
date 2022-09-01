@@ -1,0 +1,46 @@
+{
+  "folders": [
+    {
+      "name": "presonium-core",
+      "path": "/workspace/personium-core"
+    },
+    {
+      "name": "personium-plugins",
+      "path": "/workspace/personium-plugins"
+    },
+    {
+      "name": "personium-plugin-base",
+      "path": "/workspace/personium-plugin-base"
+    },
+    {
+      "name": "personium-lib-common",
+      "path": "/workspace/personium-lib-common"
+    },
+    {
+      "name": "personium-lib-es-adapter",
+      "path": "/workspace/personium-lib-es-adapter"
+    }
+  ],
+  "settings": {
+    "terminal.integrated.experimentalLinkProvider": false,
+    "terminal.integrated.gpuAcceleration": "auto",
+    "java.checkstyle.configuration": "personium-checkstyle.xml",
+    "java.checkstyle.properties": {
+      "project_loc": "."
+    },
+    "java.checkstyle.version": "8.24",
+    "java.format.settings.url": "/workspace/personium-core/formatter.xml",
+    "java.format.settings.profile": "personium",
+    "java.test.config": [
+      {
+        "name": "testConfig",
+        "vmArgs": [
+          "-Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG",
+          "-Dio.personium.esTestingCluster=personium"
+        ],
+      }
+    ],
+    "java.test.defaultConfig": "testConfig",
+    "java.configuration.updateBuildConfiguration": "interactive"
+  }
+}

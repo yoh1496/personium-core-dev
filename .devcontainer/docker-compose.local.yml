@@ -5,10 +5,12 @@ services:
     volumes:
       # Mounts the project folder to '/workspace'. While this file is in .devcontainer,
       # mounts are relative to the first file in the list, which is a level up.
-      - ../dev.code-workspace:/workspace/dev.code-workspace
+      - ../personium-core.code-workspace:/workspace/personium-core.code-workspace
       - ../../personium-core:/workspace/personium-core:cached
       - ../../personium-plugins:/workspace/personium-plugins:cached
       - ../../personium-plugin-base:/workspace/personium-plugin-base:cached
+      - ../../personium-lib-es-adapter:/workspace/personium-lib-es-adapter:cached
+      - ../../personium-lib-common:/workspace/personium-lib-common:cached
       # Extensions folder
       # - ../engine_extensions:/personium/personium-engine/extensions:ro
       # m2 cache

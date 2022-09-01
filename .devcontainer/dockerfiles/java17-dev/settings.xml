@@ -1,0 +1,26 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <localRepository>/m2/repo</localRepository>
+    <proxies>
+        <proxy>
+            <id>myproxy_http</id>
+            <active>true</active>
+            <protocol>http</protocol>
+            <host>${env.HTTP_PROXY_HOST}</host>
+            <port>8080</port>
+            <username>${env.HTTP_PROXY_USER}</username>
+            <password>${env.HTTP_PROXY_PASS}</password>
+            <nonProxyHosts>${env.HTTP_PROXY_NO_PROXY}</nonProxyHosts>
+        </proxy>
+        <proxy>
+            <id>myproxy_https</id>
+            <active>true</active>
+            <protocol>http</protocol>
+            <host>${env.HTTPS_PROXY_HOST}</host>
+            <port>8080</port>
+            <username>${env.HTTPS_PROXY_USER}</username>
+            <password>${env.HTTPS_PROXY_PASS}</password>
+            <nonProxyHosts>${env.HTTPS_PROXY_NO_PROXY}</nonProxyHosts>
+        </proxy>
+    </proxies>
+</settings>

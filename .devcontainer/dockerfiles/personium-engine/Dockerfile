@@ -1,13 +1,11 @@
-FROM tomcat:9-jdk8-adoptopenjdk-hotspot
+FROM tomcat:9-jdk17-temurin
 
 ARG USERNAME=personium
 ARG USER_UID=1000
 ARG USER_GID=${USER_UID}
 
-ARG ENGINE_VER=1.5.28
-
-ENV PERSONIUM_REPO=https://personium.io/mvnrepo/
-ENV ENGINE_URL=${PERSONIUM_REPO}io/personium/personium-engine/${ENGINE_VER}/personium-engine-${ENGINE_VER}.war
+ARG ENGINE_VER=1.6.0
+ENV ENGINE_URL=https://github.com/personium/personium-engine/releases/download/v${ENGINE_VER}/personium-engine-${ENGINE_VER}.war
 
 # Create User
 RUN groupadd --gid ${USER_GID} ${USERNAME} \
@@ -20,7 +18,7 @@ RUN groupadd --gid ${USER_GID} ${USERNAME} \
 
 WORKDIR /usr/local/tomcat/webapps/
 
-RUN curl -o personium-engine.war ${ENGINE_URL} \
+RUN curl -L -o personium-engine.war ${ENGINE_URL} \
   && unzip personium-engine.war -d personium-engine
 
 USER ${USERNAME}

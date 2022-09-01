@@ -2,10 +2,10 @@
     "name": "Personium Core Development Container",
     "dockerComposeFile": [
         "docker-compose.yml",
-        "docker-compose.remote.yml"
+        "docker-compose.local.yml"
     ],
     "service": "personium-core-dev",
-    "workspaceFolder": "/workspace",
+    "workspaceFolder": "/workspace/personium-core.code-workspace",
     "shutdownAction": "stopCompose",
     "extensions": [
         "vscjava.vscode-java-pack",
@@ -14,25 +14,5 @@
         "eamodio.gitlens"
     ],
     "settings": {
-        "java.home": "/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64",
-        "java.configuration.runtimes": [
-            {
-                "name": "JavaSE-1.8",
-                "path": "/usr/lib/jvm/adoptopenjdk-8-hotspot-amd64",
-                "default": true
-            },
-            {
-                "name": "JavaSE-11",
-                "path": "/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64",
-            }
-        ],
-        "java.checkstyle.properties": {
-            "project_loc": ".",
-        },
-        "java.checkstyle.configuration": "personium-checkstyle.xml",
-        "java.format.settings.url": "/workspace/personium-core/formatter.xml",
-        "java.format.settings.profile": "personium",
-        "java.checkstyle.version": "8.24",
-        "terminal.integrated.experimentalLinkProvider": false,
-    },
+    }
 }

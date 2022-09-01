@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   elasticsearch:
-    image: elasticsearch:6.8.12
+    image: elasticsearch:6.8.23
     ports:
       - 9200
       - 9300
@@ -11,9 +11,11 @@ services:
       - "cluster.name=personium"
       - "network.host=0.0.0.0"
       - "action.auto_create_index=.watches,.triggered_watches,.watcher-history-*"
+      - "action.destructive_requires_name=false"
       - "http.cors.enabled=true"
-      - "http.cors.allow-origin=*"
+      - "http.cors.allow-origin=http://localhost"
       - "indices.fielddata.cache.size=80%"
+      - "xpack.security.enabled=false"
 
   activemq:
     image: rmohr/activemq:5.15.9
@@ -35,8 +37,10 @@ services:
     build:
       context: ./dockerfiles/personium-engine
       args:
-        ENGINE_VER: 1.5.28
-    image: personium-engine:1.5.28
+        - ENGINE_VER=1.6.0
+        - http_proxy=$HTTP_PROXY
+        - https_proxy=$HTTPS_PROXY
+    image: personium-engine:1.6.0
     environment: 
       JAVA_OPTS: "-Dio.personium.configurationFile=/personium/personium-engine/personium-unit-config.properties"
     ports:
@@ -48,8 +52,28 @@ services:
         target: /personium/personium-engine/personium-unit-config.properties
 
   personium-core-dev:
+    image: java17-dev
     build:
-      context: ./dockerfiles/personium-core-dev
+      context: ./dockerfiles/java17-dev
+      args:
+        - http_proxy=$HTTP_PROXY
+        - https_proxy=$HTTPS_PROXY
+    environment:
+      - http_proxy=$HTTP_PROXY
+      - https_proxy=$HTTPS_PROXY
+      - no_proxy=$NO_PROXY
+      - MAVEN_ENABLE_HTTP_PROXY=${MAVEN_ENABLE_HTTP_PROXY:?false}
+      - HTTP_PROXY_HOST=$HTTP_PROXY_HOST
+      - HTTP_PROXY_PORT=$HTTP_PROXY_PORT
+      - HTTP_PROXY_USER=$HTTP_PROXY_USER
+      - HTTP_PROXY_PASS=$HTTP_PROXY_PASS
+      - HTTP_PROXY_NO_PROXY=$HTTP_NO_PROXY
+      - MAVEN_ENABLE_HTTPS_PROXY=${MAVEN_ENABLE_HTTPS_PROXY:?false}
+      - HTTPS_PROXY_HOST=$HTTPS_PROXY_HOST
+      - HTTPS_PROXY_PORT=$HTTPS_PROXY_PORT
+      - HTTPS_PROXY_USER=$HTTPS_PROXY_USER
+      - HTTPS_PROXY_PASS=$HTTPS_PROXY_PASS
+      - HTTPS_PROXY_NO_PROXY=$HTTPS_NO_PROXY
     volumes:
       - personium_data:/personium_nfs
 

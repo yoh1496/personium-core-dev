@@ -1,6 +1,4 @@
-FROM ghcr.io/yoh1496/adoptopenjdk-8-vscode:latest
-
-# 
+FROM maven:3.8-eclipse-temurin-17
 
 ARG USERNAME=devuser
 ARG USER_UID=1000
@@ -24,11 +22,12 @@ RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhisto
     && echo $SNIPPET >> "/home/$USERNAME/.bashrc"
 
 # Create m2 directory
-RUN cd /etc/maven \
-    && mv settings.xml settings.xml.bk \
-    && sed -e "\$i<localRepository\>\/m2\/repo\<\/localRepository\>" settings.xml.bk > settings.xml \
+RUN cd /usr/share/maven/ref \
+    # && mv settings.xml settings.xml.bk \
     && mkdir /m2 \
     && chown -R $USERNAME /m2
+
+COPY --chown=${USERNAME}:${USERNAME} settings.xml /home/${USERNAME}/.m2/settings.xml
 
 # Create workspace directory
 RUN mkdir /workspace \
@@ -41,7 +40,7 @@ RUN apt-get update \
     && apt-get install -y language-pack-ja-base language-pack-ja locales \
     && locale-gen ja_JP.UTF-8 \
     && apt-get install -y socat \
-    && apt-get install -y vim screen
+    && apt-get install -y vim screen wget
 
 ENV LC_ALL=C.UTF-8
 
