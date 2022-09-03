@@ -9,7 +9,7 @@ services:
       # Extensions folder
       # - ../engine_extensions:/personium/personium-engine/extensions:ro
       # m2 cache
-      - m2_cache:/m2
+      - m2_cache:/home/devuser/.m2/repository
       # bashhistory
       - bashhistory:/commandhistory
       # vscode extension

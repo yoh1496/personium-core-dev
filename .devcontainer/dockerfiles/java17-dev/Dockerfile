@@ -21,12 +21,6 @@ RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhisto
     && chown -R $USERNAME /commandhistory \
     && echo $SNIPPET >> "/home/$USERNAME/.bashrc"
 
-# Create m2 directory
-RUN cd /usr/share/maven/ref \
-    # && mv settings.xml settings.xml.bk \
-    && mkdir /m2 \
-    && chown -R $USERNAME /m2
-
 COPY --chown=${USERNAME}:${USERNAME} settings.xml /home/${USERNAME}/.m2/settings.xml
 
 # Create workspace directory
