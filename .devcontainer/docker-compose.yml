@@ -15,7 +15,6 @@ services:
       - "http.cors.enabled=true"
       - "http.cors.allow-origin=http://localhost"
       - "indices.fielddata.cache.size=80%"
-      - "xpack.security.enabled=false"
 
   activemq:
     image: symptoma/activemq:5.16.3
