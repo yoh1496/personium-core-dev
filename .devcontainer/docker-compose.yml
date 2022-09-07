@@ -49,6 +49,7 @@ services:
       - type: bind
         source: ./dockerfiles/personium-engine/personium-unit-config.properties
         target: /personium/personium-engine/personium-unit-config.properties
+        read_only: true
 
   personium-core-dev:
     image: java17-dev
@@ -57,24 +58,11 @@ services:
       args:
         - http_proxy=${HTTP_PROXY:-}
         - https_proxy=${HTTPS_PROXY:-}
-        - USER_UID=${UID:?err}
     user: devuser
     environment:
       - http_proxy=${HTTP_PROXY:-}
       - https_proxy=${HTTPS_PROXY:-}
       - no_proxy=${NO_PROXY:-}
-      - MAVEN_ENABLE_HTTP_PROXY=${MAVEN_ENABLE_HTTP_PROXY:-false}
-      - HTTP_PROXY_HOST=${HTTP_PROXY_HOST:-}
-      - HTTP_PROXY_PORT=${HTTP_PROXY_PORT:-}
-      - HTTP_PROXY_USER=${HTTP_PROXY_USER:-}
-      - HTTP_PROXY_PASS=${HTTP_PROXY_PASS:-}
-      - HTTP_PROXY_NO_PROXY=${HTTP_NO_PROXY:-}
-      - MAVEN_ENABLE_HTTPS_PROXY=${MAVEN_ENABLE_HTTPS_PROXY:-false}
-      - HTTPS_PROXY_HOST=${HTTPS_PROXY_HOST:-}
-      - HTTPS_PROXY_PORT=${HTTPS_PROXY_PORT:-}
-      - HTTPS_PROXY_USER=${HTTPS_PROXY_USER:-}
-      - HTTPS_PROXY_PASS=${HTTPS_PROXY_PASS:-}
-      - HTTPS_PROXY_NO_PROXY=${HTTPS_NO_PROXY:-}
     volumes:
       - personium_data:/personium_nfs
 

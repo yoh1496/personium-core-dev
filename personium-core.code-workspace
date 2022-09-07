@@ -24,7 +24,7 @@
   "settings": {
     "terminal.integrated.experimentalLinkProvider": false,
     "terminal.integrated.gpuAcceleration": "auto",
-    "java.checkstyle.configuration": "personium-checkstyle.xml",
+    "java.checkstyle.configuration": "/workspace/personium-core/personium-checkstyle.xml",
     "java.checkstyle.properties": {
       "project_loc": "."
     },

@@ -18,17 +18,15 @@ RUN groupadd --gid $USER_GID $USERNAME \
 RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
     && mkdir /commandhistory \
     && touch /commandhistory/.bash_history \
-    && chown -R $USERNAME /commandhistory \
+    && chmod -R 777 /commandhistory \
     && echo $SNIPPET >> "/home/$USERNAME/.bashrc"
-
-COPY --chown=${USERNAME}:${USERNAME} settings.xml /home/${USERNAME}/.m2/settings.xml
 
 # Create workspace directory
 RUN mkdir /workspace \
-    && chown -R $USERNAME /workspace
+    && chmod -R 777 /workspace
 
 RUN mkdir /personium_nfs \
-    && chown -R $USERNAME /personium_nfs
+    && chmod -R 777 /personium_nfs
 
 RUN apt-get update \
     && apt-get install -y language-pack-ja-base language-pack-ja locales \
