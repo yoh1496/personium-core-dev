@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   elasticsearch:
-    image: blacktop/elasticsearch:7.17.6
+    image: elasticsearch:7.17.6
     ports:
       - 9200
       - 9300
@@ -15,6 +15,7 @@ services:
       - "http.cors.enabled=true"
       - "http.cors.allow-origin=http://localhost"
       - "indices.fielddata.cache.size=80%"
+      - "xpack.security.enabled=false"
 
   activemq:
     image: symptoma/activemq:5.16.3
