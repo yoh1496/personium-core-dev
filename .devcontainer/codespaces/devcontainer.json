@@ -6,7 +6,6 @@
     ],
     "service": "personium-core-dev",
     "shutdownAction": "stopCompose",
-    "workspaceFolder": "/workspaces/personium-core-dev/personium-core.code-workspace",
     "extensions": [
         "vscjava.vscode-java-pack",
         "shengchen.vscode-checkstyle",
