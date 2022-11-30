@@ -1,8 +1,8 @@
 {
     "name": "Personium Core Development Container",
     "dockerComposeFile": [
-        "docker-compose.yml",
-        "docker-compose.remote.yml"
+        "../docker-compose.yml",
+        "../docker-compose.remote.yml"
     ],
     "service": "personium-core-dev",
     "workspaceFolder": "/workspace/personium-core.code-workspace",
