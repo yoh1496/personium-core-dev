@@ -2,6 +2,24 @@
 
 This repository contains a devcontainer which is useful for developing personium-core.
 
+## How to use (GitHub codespaces)
+
+### Prepare repositories
+
+Firstly, clone all of repositories onto `/workspaces` folder in codespaces.
+
+```bash
+git clone https://github.com/personium/personium-core.git /workspaces/personium-core
+git clone https://github.com/personium/personium-plugins.git /workspaces/personium-plugins
+git clone https://github.com/personium/personium-plugin-base.git /workspaces/personium-plugin-base
+git clone https://github.com/personium/personium-lib-common.git /workspaces/personium-lib-common
+git clone https://github.com/personium/personium-lib-es-adapter.git /workspaces/personium-lib-es-adapter
+```
+
+### Open workspace
+
+And then, you can open workspace file: `personium-core.code-workspace`.
+
 ## How to use (local docker environment)
 
 ### Prepare repositories
@@ -13,6 +31,7 @@ git clone https://github.com/personium/personium-core-dev.git
 git clone https://github.com/personium/personium-core.git
 git clone https://github.com/personium/personium-plugins.git
 git clone https://github.com/personium/personium-plugin-base.git
+git clone https://github.com/personium/personium-lib-common.git
 git clone https://github.com/personium/personium-lib-es-adapter.git
 ```
 
