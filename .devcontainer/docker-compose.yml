@@ -47,10 +47,6 @@ services:
       - 8080
     volumes:
       - personium_data:/personium_nfs
-      - type: bind
-        source: ./dockerfiles/personium-engine/personium-unit-config.properties
-        target: /personium/personium-engine/personium-unit-config.properties
-        read_only: true
 
   personium-core-dev:
     image: java17-dev

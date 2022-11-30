@@ -28,7 +28,7 @@
     "java.checkstyle.properties": {
       "project_loc": "."
     },
-    "java.checkstyle.version": "8.24",
+    "java.checkstyle.version": "10.3.3",
     "java.format.settings.url": "/workspace/personium-core/formatter.xml",
     "java.format.settings.profile": "personium",
     "java.test.config": [
@@ -36,11 +36,20 @@
         "name": "testConfig",
         "vmArgs": [
           "-Dorg.slf4j.simpleLogger.defaultLogLevel=DEBUG",
-          "-Dio.personium.esTestingCluster=personium"
+          "-Dio.personium.esTestingCluster=personium",
+          "--add-opens=java.base/java.io=ALL-UNNAMED",
+          "--add-opens=java.base/java.lang=ALL-UNNAMED",
+          "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
+          "--add-opens=java.base/java.util=ALL-UNNAMED",
+          "--add-opens=java.base/java.util.concurrent=ALL-UNNAMED",
+          "--add-opens=java.base/java.util.regex=ALL-UNNAMED",
+          "--add-opens=java.base/java.util.stream=ALL-UNNAMED",
+          // "-Djava.security.properties=./src/test/resources/java.security",
         ],
       }
     ],
     "java.test.defaultConfig": "testConfig",
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:jni+resolve=off"
   }
 }

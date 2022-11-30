@@ -51,7 +51,8 @@ RUN mkdir -p /home/${USERNAME}/opt \
     && echo "source ~/opt/git-prompt.sh" >> ~/.bashrc \
     && echo "source ~/opt/add-git-branch-to-ps1.bash" >> ~/.bashrc
 
-RUN mkdir -p /home/${USERNAME}/.m2
+RUN mkdir -p /home/${USERNAME}/.m2 \
+    && chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}/.m2
 
 COPY --chown=${USERNAME}:${USERNAME} add-git-branch-to-ps1.bash /home/${USERNAME}/opt/add-git-branch-to-ps1.bash
 

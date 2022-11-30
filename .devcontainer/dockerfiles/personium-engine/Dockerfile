@@ -9,6 +9,8 @@ RUN apt-get update \
 
 WORKDIR /usr/local/tomcat/webapps/
 
+COPY personium-unit-config.properties /personium/personium-engine/personium-unit-config.properties
+
 RUN curl -L -o personium-engine.war ${ENGINE_URL} \
   && unzip personium-engine.war -d personium-engine
 
